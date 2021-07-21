@@ -4,11 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"strconv"
-	"strings"
 
 	"github.com/keezeden/pocket/api"
 	"github.com/keezeden/pocket/changelog"
+	"github.com/keezeden/pocket/utilities"
 )
 
 func main() {
@@ -23,15 +22,8 @@ func main() {
 
 	fmt.Println(version)
 
-	segments := strings.Split(version, ".")
-
-	major, err := strconv.Atoi(segments[0])
-	minor, err := strconv.Atoi(segments[1])
-
-	entry := major + minor
-
+	entry := utilities.VersionToEntry(version)
 	pokemon := api.GetPokemonByEntry(entry)
-
 
 	fmt.Println(pokemon["name"])
 }
