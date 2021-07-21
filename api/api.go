@@ -19,7 +19,6 @@ func GetPokemonByEntry(entry int) (entryJson map[string]interface{}) {
         log.Fatal(err)
     }
 
-	//We Read the response body on the line below.
 	body, err := ioutil.ReadAll(resp.Body)
 	
 	if err != nil {
