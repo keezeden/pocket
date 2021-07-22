@@ -10,7 +10,7 @@ import (
 )
 
 
-func GenerateEntry(data interface{}) {
+func GenerateEntry(data interface{}, outpath *string) {
 	wd, err := os.Getwd()
 	t, err := template.ParseFiles(path.Join(wd, "template/template.html"))
 

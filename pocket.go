@@ -12,10 +12,11 @@ import (
 )
 
 func main() {
-	filepath := flag.String("file", "./CHANGELOG.md", "The file to transform into a pokedex entry.")
+	inpath := flag.String("in", "./CHANGELOG.md", "The file to transform into a pokedex entry.")
+	outpath := flag.String("in", "./CHANGELOG.md", "The file to transform into a pokedex entry.")
 	flag.Parse()
 	
-	version, err := changelog.GetVersion(filepath)
+	version, err := changelog.GetVersion(inpath)
 
 	if err != nil {
 		log.Fatal(err)
@@ -34,5 +35,5 @@ func main() {
 		Name: name,
 	}
 
-	template.GenerateEntry(data)
+	template.GenerateEntry(data, outpath)
 }
