@@ -13,7 +13,7 @@ import (
 
 func main() {
 	inpath := flag.String("in", "./CHANGELOG.md", "The file to transform into a pokedex entry.")
-	outpath := flag.String("in", "./CHANGELOG.md", "The file to transform into a pokedex entry.")
+	outpath := flag.String("out", "./entry.html", "The file to output the pokedex entry to.")
 	flag.Parse()
 	
 	version, err := changelog.GetVersion(inpath)
