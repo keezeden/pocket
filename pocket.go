@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 
 	"github.com/keezeden/pocket/api"
 	"github.com/keezeden/pocket/changelog"
@@ -13,26 +12,22 @@ import (
 
 func main() {
 	inpath := flag.String("in", "./CHANGELOG.md", "The file to transform into a pokedex entry.")
-	outpath := flag.String("out", "./entry.html", "The file to output the pokedex entry to.")
+	outpath := flag.String("out", "./pokedex.html", "The file to output the pokedex entry to.")
 	flag.Parse()
 	
 	version, err := changelog.GetVersion(inpath)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	utilities.Check(err)
 
 	fmt.Println(version)
 
 	entry := utilities.VersionToEntry(version)
 	pokemon := api.GetPokemonByEntry(entry)
 
-	name := fmt.Sprint(pokemon["name"])
-
 	data := struct {
 		Name string
 	}{
-		Name: name,
+		Name: fmt.Sprint(pokemon["name"]),
 	}
 
 	template.GenerateEntry(data, outpath)

@@ -7,13 +7,14 @@ import (
 	"os"
 
 	"github.com/keezeden/pocket/regex"
+	"github.com/keezeden/pocket/utilities"
 )
 
 func GetVersion(filepath *string) (string, error) {
 	file, err := os.Open(*filepath)
-    if err != nil {
-        log.Fatal(err)
-    }
+    
+	utilities.Check(err)
+
     defer file.Close()
 
     scanner := bufio.NewScanner(file)

@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
+
+	"github.com/keezeden/pocket/utilities"
 )
 
 
@@ -15,22 +16,16 @@ func GetPokemonByEntry(entry int) (entryJson map[string]interface{}) {
 	request := fmt.Sprintf("%s/%d", endpoint, entry)
 	resp, err := http.Get(request)
 	
-	if err != nil {
-        log.Fatal(err)
-    }
+	utilities.Check(err)
 
 	body, err := ioutil.ReadAll(resp.Body)
 	
-	if err != nil {
-	   log.Fatalln(err)
-	}
+	utilities.Check(err)
 
 	data := make(map[string]interface{})
 	json.Unmarshal(body, &data)
 	
-	if err != nil {
-		log.Fatalln(err)
-	 }
+	utilities.Check(err)
 
 	return data
 }

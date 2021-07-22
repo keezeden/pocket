@@ -1,12 +1,12 @@
 package template
 
 import (
-	"bytes"
 	"fmt"
 	"html/template"
-	"log"
 	"os"
 	"path"
+
+	"github.com/keezeden/pocket/utilities"
 )
 
 
@@ -14,16 +14,12 @@ func GenerateEntry(data interface{}, outpath *string) {
 	wd, err := os.Getwd()
 	t, err := template.ParseFiles(path.Join(wd, "template/template.html"))
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	utilities.Check(err)
 
-	var tpl bytes.Buffer
-	errr := t.Execute(&tpl, data)
+	f, err := os.Create(*outpath)
+	err = t.Execute(f, data)
 
-	if errr != nil {
-		log.Fatal(errr)
-	}
-
-	fmt.Print(tpl.String())
+	utilities.Check(err)
+	
+	fmt.Printf("Wrote Entry to %d Successfully", &outpath)
 }

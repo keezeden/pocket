@@ -5,7 +5,11 @@ import (
 	"strconv"
 	"strings"
 )
-
+func Check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
 
 func VersionToEntry(version string) int {
 	segments := strings.Split(version, ".")
