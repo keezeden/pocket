@@ -7,6 +7,7 @@ import (
 
 	"github.com/keezeden/pocket/api"
 	"github.com/keezeden/pocket/changelog"
+	"github.com/keezeden/pocket/template"
 	"github.com/keezeden/pocket/utilities"
 )
 
@@ -25,5 +26,13 @@ func main() {
 	entry := utilities.VersionToEntry(version)
 	pokemon := api.GetPokemonByEntry(entry)
 
-	fmt.Println(pokemon["name"])
+	name := fmt.Sprint(pokemon["name"])
+
+	data := struct {
+		Name string
+	}{
+		Name: name,
+	}
+
+	template.GenerateEntry(data)
 }
