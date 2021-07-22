@@ -21,5 +21,5 @@ func GenerateEntry(data interface{}, outpath *string) {
 
 	utilities.Check(err)
 	
-	fmt.Printf("Wrote Entry to %d Successfully", &outpath)
+	fmt.Printf("Wrote Entry to %s Successfully", *outpath)
 }
