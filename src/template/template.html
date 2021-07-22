@@ -6,8 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     <title>Changelog Pokédex</title>
+    <style>
+      @font-face {
+        font-family: Pokemon;
+        src: url('assets/pokemon-font.ttf ');
+      }
+      body {
+        font-family: Pokemon;
+      }
+      .flip {
+        transform: scaleX(-1);
+      }
+      .fit {
+        max-width: 600px;
+      }
+      .img {
+        width: 250px;
+      }
+    </style>
   </head>
-  <body>
-    <div class="text-lg text-red-500">{{.Name}}</div>
+  <body class="bg-black flex items-center justify-center h-screen">
+    <div class="flex flex-col p-4 bg-yellow-700 fit">
+      <div class="flex flex-col">
+        <div class="p-4 flex space-x-4 border-4 border-black bg-white fit">
+          <div class="flex flex-col items-center">
+            <img
+              class="flip img"
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/59.png"
+            />
+            <p class="font-extrabold text-2xl">No. 059</p>
+          </div>
+          <div class="pt-8 text-3xl uppercase space-y-6">
+            <p>{{ .Name }}</p>
+            <p>Legendary</p>
+            <div class="space-y-6">
+              <span class="flex space-x-14">
+                <p>HT</p>
+                <p>6'03"</p>
+              </span>
+              <span class="flex space-x-6">
+                <p>WT</p>
+                <p class="lowercase">342.0lb</p>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border-4 border-black text-3xl leading-loose px-4 py-6">
+          <p>for its beauty. It runs agilely as if on wings.</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
