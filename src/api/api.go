@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/keezeden/pocket/utilities"
+	"github.com/keezeden/pocket/src/utilities"
 )
 
 

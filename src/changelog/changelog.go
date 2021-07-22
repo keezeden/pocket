@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/keezeden/pocket/regex"
-	"github.com/keezeden/pocket/utilities"
+	"github.com/keezeden/pocket/src/regex"
+	"github.com/keezeden/pocket/src/utilities"
 )
 
 func GetVersion(filepath *string) (string, error) {

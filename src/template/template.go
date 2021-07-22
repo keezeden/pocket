@@ -6,13 +6,13 @@ import (
 	"os"
 	"path"
 
-	"github.com/keezeden/pocket/utilities"
+	"github.com/keezeden/pocket/src/utilities"
 )
 
 
 func GenerateEntry(data interface{}, outpath *string) {
 	wd, err := os.Getwd()
-	t, err := template.ParseFiles(path.Join(wd, "template/template.html"))
+	t, err := template.ParseFiles(path.Join(wd, "src/template/template.html"))
 
 	utilities.Check(err)
 

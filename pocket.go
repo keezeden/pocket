@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/keezeden/pocket/api"
-	"github.com/keezeden/pocket/changelog"
-	"github.com/keezeden/pocket/template"
-	"github.com/keezeden/pocket/utilities"
+	"github.com/keezeden/pocket/src/api"
+	"github.com/keezeden/pocket/src/changelog"
+	"github.com/keezeden/pocket/src/template"
+	"github.com/keezeden/pocket/src/utilities"
 )
 
 func main() {
