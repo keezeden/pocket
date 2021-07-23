@@ -11,7 +11,7 @@ func Check(e error) {
     }
 }
 
-func VersionToEntry(version string) int {
+func VersionToId(version string) int {
 	segments := strings.Split(version, ".")
 
 	major, err := strconv.Atoi(segments[0])

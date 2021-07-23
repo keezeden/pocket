@@ -10,11 +10,11 @@ import (
 )
 
 
-var endpoint = "https://pokeapi.co/api/v2/pokemon"
+var entryEndpoint = "https://pokeapi.co/api/v2/pokemon"
+var speciesEndpoint = "https://pokeapi.co/api/v2/pokemon-species"
 
-func GetPokemonByEntry(entry int) (entryJson map[string]interface{}) {
-	request := fmt.Sprintf("%s/%d", endpoint, entry)
-	resp, err := http.Get(request)
+func Request(url string) (response map[string]interface{}) {
+	resp, err := http.Get(url)
 	
 	utilities.Check(err)
 
@@ -28,4 +28,14 @@ func GetPokemonByEntry(entry int) (entryJson map[string]interface{}) {
 	utilities.Check(err)
 
 	return data
+}
+
+func GetPokemonByEntry(entry int) (entryJson map[string]interface{}, speciesJson map[string]interface{}) {
+	entryUrl := fmt.Sprintf("%s/%d", entryEndpoint, entry)
+	speciesUrl := fmt.Sprintf("%s/%d", speciesEndpoint, entry)
+
+	pokemonEntry := Request(entryUrl)
+	pokemonSpecies := Request(speciesUrl)
+
+	return pokemonEntry, pokemonSpecies
 }

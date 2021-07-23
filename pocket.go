@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"math"
+	"strings"
 
 	"github.com/keezeden/pocket/src/api"
 	"github.com/keezeden/pocket/src/changelog"
@@ -21,13 +23,24 @@ func main() {
 
 	fmt.Println(version)
 
-	entry := utilities.VersionToEntry(version)
-	pokemon := api.GetPokemonByEntry(entry)
+	id := utilities.VersionToId(version)
+	entry, species := api.GetPokemonByEntry(id)	
 
 	data := struct {
+		ID int
 		Name string
+		Species string
+		ImageURL string
+		Height float64
+		Weight float64
+		Description string
 	}{
-		Name: fmt.Sprint(pokemon["name"]),
+		ID: id,
+		Name: fmt.Sprint(entry["name"]),
+		Species: strings.Replace(fmt.Sprint(species["genera"].([]interface{})[7].(map[string]interface{})["genus"]), " Pokémon", "", -1),
+		ImageURL: fmt.Sprint(entry["sprites"].(map[string]interface{})["versions"].(map[string]interface{})["generation-i"].(map[string]interface{})["red-blue"].(map[string]interface{})["front_default"]),
+		Height: math.Round((entry["height"].(float64) / 3.048) * 100)/100,
+		Weight: math.Round((entry["weight"].(float64) / 4.536)),
 	}
 
 	template.GenerateEntry(data, outpath)
